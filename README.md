@@ -1,7 +1,7 @@
 # Machine_Learning_Practice_Tourette_Syndrome
 
 ## Reference
-These data are collected by Yu-Jiun Chen, and manual is written by Chih-Ting Chang.  
+These data are collected by Yu-Jiun Chen in National Taiwan University Hospital Hsin-Chu Branch.  
 For the detail of this experiment, please read Yu-Jiun Chen's master thesis.
 
 ---
@@ -10,14 +10,14 @@ For the detail of this experiment, please read Yu-Jiun Chen's master thesis.
 1. Data Information 
 2. Code Information
     1. Data Preprocess
-    2. Feature Selection
+    2. Feature Extraction
     3. Machine Learning
 
 ---
 
 ## Data Information
 ### About the Experiment
-- In this study, we use functional near-infrared spectroscopy based neurofeedback training as the behavior therapy for TS patients, and last for 8 weeks.  
+- In this study, we apply neurofeedback training  based on functional near-infrared spectroscopy as the behavior therapy for TS patients, and last for 8 weeks.  
 
 - Yale global tic severity scale (YGTSS) is applyed in the first and last week to evaluate the improvment of patients, the mild group and severe group is bounded by score of 25.
 
