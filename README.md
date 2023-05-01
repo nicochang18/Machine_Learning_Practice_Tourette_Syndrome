@@ -7,21 +7,22 @@ For the detail of this experiment, please read Yu-Jiun Chen's master thesis.
 ---
 
 ## Content
-1. Data Information 
-2. Code Information
+1. About
+2. Data Information 
+3. Code Information
     1. Data Preprocess
     2. Feature Extraction
     3. Machine Learning
 
 ---
-
-## Data Information
-### About the Experiment
+## About
 - In this study, we apply neurofeedback training  based on functional near-infrared spectroscopy as the behavior therapy for TS patients, and last for 8 weeks.  
 
 - Yale global tic severity scale (YGTSS) is applyed in the first and last week to evaluate the improvment of patients, the mild group and severe group is bounded by score of 25.
 
 - The classification machine leaning model helps us the figure out the differences between mild group and severe group.
+
+## Data Information
 
 ### Data Information of Patients
 The anonymous patient list is saved in `patient_list.csv`
@@ -56,6 +57,16 @@ The files are placed by the case number, `usually` two files for each case. Chec
 ---
 
 ## Code Information
-1. Data Preprocess  
-2. Feature Selection
+1. Data Preprocess
+![Flow Chart for Data Preprocess](./figs/Data_preprocess.png "Data_preprocess")
+        
+2. Feature Extraction
+    - stage average
+    - average difference 
+    - stage peak
+    - stage activation 
+    - begin slope (trail, rest)
+    - stadard deviation
+    - stadard deviation difference 
 3. Machine Learning
+
