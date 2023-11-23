@@ -57,16 +57,50 @@ The files are placed by the case number, `usually` two files for each case. Chec
 ---
 
 ## Code Information
-1. Data Preprocess
+### Data Preprocess
 ![Flow Chart for Data Preprocess](./figs/Data_preprocess.png "Data_preprocess")
         
-2. Feature Extraction
-    - stage average
-    - average difference 
-    - stage peak
-    - stage activation 
-    - begin slope (trail, rest)
-    - stadard deviation
-    - stadard deviation difference 
-3. Machine Learning
+### Feature Extraction
+- 7 features are extracted in this file:
+1. stage average:  
+    The average value in each stage.
+2. average difference:  
+    The difference of average value between two stages.
+3. stage peak:  
+    The maximum value in each stage.
+4. stage activation:  
+    The difference between maximum - minimum value in each stage.
+5. begin slope (trail, rest):  
+    The slope in the begining of trail & rest stage.
+6. standard deviation:  
+    The standard deviation value in each stage.
+7. standard deviation difference:  
+    The difference of standard deviation value between two stages.
 
+### Machine Learning
+1. Data preprocess:  
+   - Use ```train_test_split``` to make training and test data.
+2. Statistics:
+   - Check if the variables are significant different in two groups
+   - Steps:  
+     1. Shapiro test: Test if samples have normal distribution
+     2. Levene test: Test if samples have equal variances
+     3. Two-tailed t-test: Test both if the mean is significantly greater than x and if the mean significantly less than x
+```python
+good_feature = []
+p_values = []
+for feature in XH_train.columns:
+    sat, p_value_H = shapiro(XH_train[feature])
+    sat, p_value_L = shapiro(XL_train[feature])
+    if p_value_H>0.05 and p_value_L>0.05:
+        sat, p_value = levene(XH_train[feature], XL_train[feature])
+        if p_value > 0.05:
+            sat, p_value = ttest_ind(XH_train[feature], XL_train[feature], equal_var = True)
+            if p_value <0.05:
+                good_feature.append(feature)
+                p_values.append(p_value)
+```
+3. SVM:
+   - Use `StandardScaler` to standardize data.
+   - Use `ParameterSampler` to find best paramenter.
+   - Fit and predict with `SVC`.
