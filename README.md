@@ -104,3 +104,27 @@ for feature in XH_train.columns:
    - Use `StandardScaler` to standardize data.
    - Use `ParameterSampler` to find best paramenter.
    - Fit and predict with `SVC`.
+```python
+stdd = StandardScaler()
+X_train_std = stdd.fit_transform(X_train)
+X_test_std = stdd.transform(X_test)
+
+param_grid={"gamma":[0.001, 0.01, 0.1, 1], "C":[0.01, 0.1, 1, 10, 100]}
+pam = ParameterSampler(param_grid, n_iter=20)
+for parameter in list(pam):
+    svc = SVC(kernel='rbf', **parameter)
+
+    svc = svc.fit(X_train_std, y_train)
+    y_predict = svc.predict(X_test_std)
+    y_predict_train = svc.predict(X_train_std)
+
+    if accuracy_score(y_train, y_predict_train)>0.8 and accuracy_score(y_test, y_predict)>0.70:
+        param_list.append(str(parameter))
+        train_acc.append(accuracy_score(y_train, y_predict_train))
+        test_acc.append(accuracy_score(y_test, y_predict))
+```
+4. Plots:
+    - Visulize the result.
+5. Confusion matrix & box plot:
+    - Use `confusion_matrix` to evaluate the predictions.
+    - Use `boxplot` to figure out the distributions of varuables in two groups.
